@@ -1,0 +1,31 @@
+services:
+  ollama:
+    container_name: ollama
+    image: ollama/ollama
+    ports:
+      - 11434:11434
+    restart: unless-stopped
+    volumes: 
+      - /var/docker_data/ollama:/root/.ollama
+    environment:
+      - gpus=all
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    networks:
+      - dev
+      - prod
+
+networks:
+  dev:
+    name: dev
+    external: true
+  prod:
+    name: prod
+    external: true
+
+

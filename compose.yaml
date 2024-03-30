@@ -1,0 +1,9 @@
+services:
+  proxy:
+    container_name: ollama-proxy
+    build: .
+    ports:
+      - 11434:11434
+    environment:
+      - ENDPOINT
+      - API_KEY
