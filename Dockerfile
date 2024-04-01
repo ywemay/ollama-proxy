@@ -5,10 +5,12 @@ FROM python:3.9
 WORKDIR /app
 
 # Add the current directory contents into the container at /app
-ADD ./src /app
+ADD ./src/requirements.txt /app/requirements.txt
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
+
+ADD ./src /app
 
 # Make port 80 available to the world outside this container
 EXPOSE 11434
